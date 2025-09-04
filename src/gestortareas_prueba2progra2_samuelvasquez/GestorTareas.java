@@ -14,6 +14,7 @@ public class GestorTareas {
         FileManager fM = new FileManager();
     
        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+       
         int opc;
         do{
          
@@ -27,19 +28,31 @@ public class GestorTareas {
             System.out.print("Seleccione una opcion: ");
             opc = sc.nextInt();
              try{
-
+                  fM.empezarTareas();
                 switch(opc){
                     case 1:
-                        System.out.println("");
-                        fM.empezarTareas();
+                        System.out.println("\n ---- Agregar Tarea ----");
+                       
+                        System.out.println("Nombre de la tarea: ");
+                        fM.crearTarea(sc.next());
+                        System.out.println("Tarea Creada Con Exito!");
+                        break;
                     case 2:
+                        System.out.println("\n---- Tareas Actuales ----");
+                        System.out.println(fM.mostrarTareas());
+                        System.out.println("---- Fin de tareas ----");
+                        break;
 
                     case 3:
 
-
+                        break;
                     case 4:
                         System.out.println("Fin Del Programa");
                         break;
+                    default:
+                        System.out.println("Seleccione solo las opciones mostradas");
+                        break;
+                    
                 }
            }catch(InputMismatchException e){
                System.out.println("Porfavor seleccione una opcion valida");

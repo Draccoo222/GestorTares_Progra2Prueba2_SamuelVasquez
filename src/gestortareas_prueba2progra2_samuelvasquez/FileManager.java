@@ -4,7 +4,10 @@
  */
 package gestortareas_prueba2progra2_samuelvasquez;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -16,14 +19,65 @@ public class FileManager {
     
     
     public void empezarTareas() throws IOException{
-        if(file == null){
-            file = new File("tareas");
-            file.createNewFile();
+            file = new File("tareas.txt");
+        if(!file.exists()){
+         file.createNewFile();
         }
     }
+    
+    public void crearTarea(String name) throws IOException{
+        if(file != null){
+            FileWriter fW = new FileWriter(file, true);
+            fW.write("[ ] " + name + "\n");
+            fW.close();
+        }
+    }
+    
+    public String mostrarTareas() throws IOException {
+        if(file != null){
+            BufferedReader fR = new BufferedReader(new FileReader(file));
+            String line;
+            String txt = "";
+            while((line = fR.readLine())!= null){
+                txt += line + "\n";
+            }
+            fR.close();
+            return txt;
+        }
+        return "No hay tareas";
+    }
+    
+    public void completarTarea(String nameTarea) throws IOException{
+            BufferedReader fR = new BufferedReader(new FileReader(file));
+            boolean exists = false;
+            String line;
+            String txt = "";
+            while((line = fR.readLine())!= null){
+                if(line.equals("[ ] " + nameTarea)){
+                    line = "[✓]" + nameTarea;
+                    exists = true;
+                }
+                txt += line + "\n";
+            }
+            fR.close();
+            
+            FileWriter fW = new FileWriter(file, false);
+            fW.write(txt);
+            fW.close();
+            
+            
+            System.out.println((exists) ? "Tarea Completada" : "Tarea No Existe");
+        }
+        
+        
+    
+    }
+    
+    
+    
     
    
     
     
     
-}
+
