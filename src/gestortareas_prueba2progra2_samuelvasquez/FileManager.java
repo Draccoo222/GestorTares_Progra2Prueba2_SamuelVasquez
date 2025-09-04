@@ -35,12 +35,12 @@ public class FileManager {
     
     public String mostrarTareas() throws IOException {
         if(file != null){
-            int cont = 0;
+            int cont = 1;
             BufferedReader fR = new BufferedReader(new FileReader(file));
             String line;
             String txt = "";
             while((line = fR.readLine())!= null){
-                txt += (cont++) + line + "\n";
+                txt += (cont++) + "." + line + "\n";
             }
             fR.close();
             return txt;
