@@ -33,7 +33,7 @@ public class GestorTareas {
                     case 1:
                         System.out.println("\n ---- Agregar Tarea ----");
                        
-                        System.out.println("Nombre de la tarea: ");
+                        System.out.print("Nombre de la tarea: ");
                         fM.crearTarea(sc.next());
                         System.out.println("Tarea Creada Con Exito!");
                         break;
@@ -44,7 +44,9 @@ public class GestorTareas {
                         break;
 
                     case 3:
-
+                        System.out.println("\n---- Completar Tarea ----");
+                        System.out.print("Nombre de la tarea: ");
+                        fM.completarTarea(sc.next());
                         break;
                     case 4:
                         System.out.println("Fin Del Programa");

@@ -35,11 +35,12 @@ public class FileManager {
     
     public String mostrarTareas() throws IOException {
         if(file != null){
+            int cont = 0;
             BufferedReader fR = new BufferedReader(new FileReader(file));
             String line;
             String txt = "";
             while((line = fR.readLine())!= null){
-                txt += line + "\n";
+                txt += (cont++) + line + "\n";
             }
             fR.close();
             return txt;
@@ -53,7 +54,7 @@ public class FileManager {
             String line;
             String txt = "";
             while((line = fR.readLine())!= null){
-                if(line.equals("[ ] " + nameTarea)){
+                if(line.equalsIgnoreCase("[ ] " + nameTarea)){
                     line = "[✓]" + nameTarea;
                     exists = true;
                 }
@@ -66,7 +67,7 @@ public class FileManager {
             fW.close();
             
             
-            System.out.println((exists) ? "Tarea Completada" : "Tarea No Existe");
+            System.out.println((exists) ? "----Tarea Completada----" : "----Tarea No Existe----");
         }
         
         
